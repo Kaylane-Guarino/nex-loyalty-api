@@ -117,6 +117,95 @@ Password: 123456
 
 ---
 
+## Business Rules
+
+### User Registration
+
+* Users can register using:
+
+  * Full name
+  * E-mail
+  * CPF
+  * Password
+
+* CPF and e-mail must be unique.
+
+* Duplicate CPF or e-mail registration is not allowed.
+
+---
+
+### Spreadsheet Upload
+
+The uploaded spreadsheet **does not create users**.
+
+The spreadsheet only creates transactions for users already registered in the system.
+
+Behavior:
+
+* Existing CPF:
+
+```txt
+Transaction created
+```
+
+* Non-existing CPF:
+
+```txt
+Transaction ignored
+```
+
+Example:
+
+If the spreadsheet contains:
+
+```txt
+CPF: 282.279.300-00
+```
+
+but this CPF is not registered in the Users table:
+
+```txt
+No transaction will be created.
+```
+
+---
+
+### Wallet
+
+Wallet balance only considers:
+
+```txt
+Approved transactions
+```
+
+Ignored statuses:
+
+```txt
+Rejected
+Pending
+```
+
+---
+
+### Access Rules
+
+Admin:
+
+* Upload spreadsheets
+* View all transactions
+* Apply filters
+
+User:
+
+* View only personal transactions
+* View wallet balance
+* Filter statement data
+
+Users cannot access administrator routes.
+
+
+---
+
 ## Development time
 
 Start:
